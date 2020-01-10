@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--配置mapper扫描包-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.cn.kg.dao"/>
+    </bean>
+
+<!--    <bean id="mybatisConfig" class="com.baomidou.mybatisplus.core.MybatisConfiguration">-->
+<!--        <property name="mapUnderscoreToCamelCase" value="true"/>-->
+<!--&lt;!&ndash;        <property name="logImpl" value="org.apache.log4j.Logger" />&ndash;&gt;-->
+<!--    </bean>-->
+
+    <!--配置数据源-->
+    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="dataSource" ref="myRoutingDataSource"/>
+<!--        <property name="configuration" ref="mybatisConfig" />-->
+        <property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:mapper/*.xml" />
+    </bean>
+</beans>
